@@ -1,0 +1,25 @@
+name: Pruebas de testeo
+on: [push]
+
+jobs:
+    testeo:
+        name: Artefacto para testeo
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Checkout del codigo
+              uses: action/checkout@v2
+
+            - name: setup python
+              uses: actions/setup-python@v1
+              with:
+                python-version: 3.8
+
+            - name: test run
+              run: | 
+                ls
+                export WEBHOOK="cmr status"
+                echo $WEBHOOK
+
+            - name: test
+              run: python -m unittest test.py
